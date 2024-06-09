@@ -1,0 +1,844 @@
+{
+	"info": {
+		"_postman_id": "eb959ff9-b9e4-4dcb-9ad7-559bfaf950fd",
+		"name": "Rest_Api_B23",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34863548",
+		"_collection_link": "https://abc555.postman.co/workspace/ABC-Workspace~280406f1-a0a9-4c0e-8319-602ac3d0f4c4/collection/34863548-eb959ff9-b9e4-4dcb-9ad7-559bfaf950fd?action=share&source=collection_link&creator=34863548"
+	},
+	"item": [
+		{
+			"name": "Post_Api",
+			"item": [
+				{
+					"name": "Post_Api_Tc1_Excel",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//1.validate status code\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"//2. validate the response body\r",
+									"\r",
+									"//2.1 fetch the response body\r",
+									"\r",
+									"var responseBody=pm.response.json();\r",
+									"\r",
+									"var res_name=responseBody.name;\r",
+									"\r",
+									"var res_job=responseBody.job;\r",
+									"\r",
+									"var res_id=responseBody.id;\r",
+									"\r",
+									"var res_createdAt=responseBody.createdAt.slice(0,11);\r",
+									"\r",
+									"\r",
+									"//2.2 set the expected result\r",
+									"var requestBody=pm.request.body.raw;\r",
+									"console.log(requestBody);\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"var req_name=requestBody.name;\r",
+									"var req_job=requestBody.job;\r",
+									"var expected_date=new Date().toISOString().slice(0,11);\r",
+									"console.log(expected_date);\r",
+									"//2.3 validation the response body param\r",
+									"pm.test(\"validate responseBody param: name\" , function(){\r",
+									"pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param: id\" , function(){\r",
+									"pm.expect(res_id).to.not.null;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param:createdAt\" , function(){\r",
+									"\r",
+									"pm.expect(res_createdAt).to.eql(expected_date);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"job\":\"{{job}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{POST_URL}}",
+							"host": [
+								"{{POST_URL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post_Api_Tc1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//1.validate status code\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"//2. validate the response body\r",
+									"\r",
+									"//2.1 fetch the response body\r",
+									"\r",
+									"var responseBody=pm.response.json();\r",
+									"\r",
+									"var res_name=responseBody.name;\r",
+									"\r",
+									"var res_job=responseBody.job;\r",
+									"\r",
+									"var res_id=responseBody.id;\r",
+									"\r",
+									"var res_createdAt=responseBody.createdAt.slice(0,11);\r",
+									"\r",
+									"\r",
+									"//2.2 set the expected result\r",
+									"var requestBody=pm.request.body.raw;\r",
+									"console.log(requestBody);\r",
+									"\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"\r",
+									"var req_name=requestBody.name;\r",
+									"\r",
+									"var req_job=requestBody.job;\r",
+									"\r",
+									"var expected_date=new Date().toISOString().slice(0,11);\r",
+									"console.log(expected_date);\r",
+									"\r",
+									"//2.3 validation the response body param\r",
+									"pm.test(\"validate responseBody param: name\" , function(){\r",
+									"pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param: id\" , function(){\r",
+									"pm.expect(res_id).to.not.null;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param:createdAt\" , function(){\r",
+									"\r",
+									"pm.expect(res_createdAt).to.eql(expected_date);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"morpheus\",\r\n     \"job\": \"leader\"\r\n}\r\n\r\n\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{POST_URL}}",
+							"host": [
+								"{{POST_URL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post_Api_Tc1_Json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//1.validate status code\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"//2. validate the response body\r",
+									"\r",
+									"//2.1 fetch the response body\r",
+									"\r",
+									"var responseBody=pm.response.json();\r",
+									"\r",
+									"var res_name=responseBody.name;\r",
+									"\r",
+									"var res_job=responseBody.job;\r",
+									"\r",
+									"var res_id=responseBody.id;\r",
+									"\r",
+									"var res_createdAt=responseBody.createdAt.slice(0,11);\r",
+									"\r",
+									"\r",
+									"//2.2 set the expected result\r",
+									"var requestBody=pm.request.body.raw;\r",
+									"console.log(requestBody);\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"var req_name=requestBody.name;\r",
+									"var req_job=requestBody.job;\r",
+									"var expected_date=new Date().toISOString().slice(0,11);\r",
+									"console.log(expected_date);\r",
+									"//2.3 validation the response body param\r",
+									"pm.test(\"validate responseBody param: name\" , function(){\r",
+									"pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param: id\" , function(){\r",
+									"pm.expect(res_id).to.not.null;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param:createdAt\" , function(){\r",
+									"\r",
+									"pm.expect(res_createdAt).to.eql(expected_date);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"job\":\"{{job}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{POST_URL}}",
+							"host": [
+								"{{POST_URL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post_Api_Dynamic_Variable",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"//1.validate status code\r",
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"//2. validate the response body\r",
+									"\r",
+									"//2.1 fetch the response body\r",
+									"\r",
+									"var responseBody=pm.response.json();\r",
+									"\r",
+									"var res_name=responseBody.name;\r",
+									"\r",
+									"var res_job=responseBody.job;\r",
+									"\r",
+									"var res_id=responseBody.id;\r",
+									"\r",
+									"var res_createdAt=responseBody.createdAt.slice(0,11);\r",
+									"\r",
+									"\r",
+									"//2.2 set the expected result\r",
+									"var requestBody=pm.request.body.raw;\r",
+									"console.log(requestBody);\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"var req_name=requestBody.name;\r",
+									"var req_job=requestBody.job;\r",
+									"var expected_date=new Date().toISOString().slice(0,11);\r",
+									"console.log(expected_date);\r",
+									"//2.3 validation the response body param\r",
+									"pm.test(\"validate responseBody param: name\" , function(){\r",
+									"pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param: id\" , function(){\r",
+									"pm.expect(res_id).to.not.null;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate responseBody param:createdAt\" , function(){\r",
+									"\r",
+									"pm.expect(res_createdAt).to.eql(expected_date);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"var random_name=pm.variables.replaceIn('{{$randomFirstName}}');\r",
+									"var random_job=pm.variables.replaceIn('{{$randomJobType}}');\r",
+									"pm.collectionVariables.set(\"name\",random_name);\r",
+									"pm.collectionVariables.set(\"job\",random_job);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"job\":\"{{job}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{POST_URL}}",
+							"host": [
+								"{{POST_URL}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post_Api_Dyanamic_Variable_Retry",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var start = pm.collectionVariables.get(\"CountStart\");\r",
+									"var end = pm.collectionVariables.get(\"CountEnd\");\r",
+									"var statuscode = pm.response.status;\r",
+									"\r",
+									"if (statuscode != \"Created\")\r",
+									"{\r",
+									"    if(start<eval(end-1)){\r",
+									"        pm.collectionVariables.set(\"CountStart\",eval(start+1));\r",
+									"        pm.execution.setNextRequest(\"Post_API_TC1 Dynamic Variables\");\r",
+									"    }\r",
+									"    else{\r",
+									"        pm.collectionVariables.set(\"CountStart\",0);\r",
+									"        pm.test(\"Status code is 201\", function () {\r",
+									"        pm.response.to.have.status(201);\r",
+									"        });\r",
+									"    }\r",
+									"    \r",
+									"}\r",
+									"else{\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"pm.response.to.have.status(201);\r",
+									"});\r",
+									"var responseBody = pm.response.json();\r",
+									"var res_name = responseBody.name;\r",
+									"var res_job = responseBody.job;\r",
+									"var res_id = responseBody.id;\r",
+									"var res_createdAt = responseBody.createdAt.slice(0,11);\r",
+									"\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"var req_name = requestBody.name;\r",
+									"var req_job = requestBody.job;\r",
+									"var expected_date = new Date().toISOString().slice(0,11);\r",
+									"\r",
+									"pm.test(\"validate response body param : name\", function() {\r",
+									"    pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : id\", function() {\r",
+									"    pm.expect(res_id).to.not.null;\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : createdAt\", function() {\r",
+									"    pm.expect(res_createdAt).to.eql(expected_date);\r",
+									"})\r",
+									"}\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"{{name}}\",\r\n    \"job\":\"{{job}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{POST_URL}}",
+							"host": [
+								"{{POST_URL}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Put_Api",
+			"item": [
+				{
+					"name": "Put_Api_tc1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Step 1 : Validate the status code\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Step 2 : Validate the response body\r",
+									"\r",
+									"// Step 2.1 : Fetch the response body\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"var res_name = responseBody.name;\r",
+									"var res_job = responseBody.job;\r",
+									"var res_id = responseBody.id;\r",
+									"var res_updatedAt = responseBody.updatedAt.slice(0,11);\r",
+									"\r",
+									"// Step 2.2 Set the expected result\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"var req_name = requestBody.name;\r",
+									"var req_job = requestBody.job;\r",
+									"var expected_date = new Date().toISOString().slice(0,11);\r",
+									"\r",
+									"// Step 2.3 Validate the response body params\r",
+									"\r",
+									"pm.test(\"validate response body param : name\", function() {\r",
+									"    pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"validate response body param : updatedAt\", function() {\r",
+									"    pm.expect(res_updatedAt).to.eql(expected_date);\r",
+									"})\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PUT_URL}}",
+							"host": [
+								"{{PUT_URL}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patch_Api",
+			"item": [
+				{
+					"name": "Patch_Api_Tc1",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"//Step 1 : Validate the status code\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Step 2 : Validate the response body\r",
+									"\r",
+									"// Step 2.1 : Fetch the response body\r",
+									"\r",
+									"var responseBody = pm.response.json();\r",
+									"var res_name = responseBody.name;\r",
+									"var res_job = responseBody.job;\r",
+									"var res_id = responseBody.id;\r",
+									"var res_updatedAt = responseBody.updatedAt.slice(0,11);\r",
+									"\r",
+									"// Step 2.2 Set the expected result\r",
+									"var requestBody = pm.request.body.raw;\r",
+									"requestBody=JSON.parse(requestBody);\r",
+									"var req_name = requestBody.name;\r",
+									"var req_job = requestBody.job;\r",
+									"var expected_date = new Date().toISOString().slice(0,11);\r",
+									"\r",
+									"// Step 2.3 Validate the response body params\r",
+									"\r",
+									"pm.test(\"validate response body param : name\", function() {\r",
+									"    pm.expect(res_name).to.eql(req_name);\r",
+									"})\r",
+									"\r",
+									"pm.test(\"validate response body param : job\", function() {\r",
+									"    pm.expect(res_job).to.eql(req_job);\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"validate response body param : updatedAt\", function() {\r",
+									"    pm.expect(res_updatedAt).to.eql(expected_date);\r",
+									"})"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"zion resident\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{PATCH_URL}}",
+							"host": [
+								"{{PATCH_URL}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get_Api",
+			"item": [
+				{
+					"name": "Get_Api_Tc1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Removed invalid characters from variable names and strings",
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"var responseBody = pm.response.json()",
+									"var dataArray = responseBody.data;",
+									"var count = Object.keys(dataArray).length;",
+									"var supportData = responseBody.support;",
+									"",
+									"var res_page = responseBody.page;",
+									"var res_per_page = responseBody.per_page;",
+									"var res_total = responseBody.total;",
+									"var res_total_pages = responseBody.total_pages;",
+									"var res_support_url = supportData.url;",
+									"var res_support_text = supportData.text;",
+									"",
+									"var exp_page = 2;",
+									"var exp_per_page = 6;",
+									"var exp_total = 12;",
+									"var exp_total_pages = 2;",
+									"var exp_support_url = \"https://reqres.in/#support-heading\";",
+									"var exp_support_text = \"To keep ReqRes free, contributions towards server costs are appreciated!\";",
+									"",
+									"const exp_data_id_array = [7,8,9,10,11,12];",
+									"const exp_data_first_name=[\"Michael\",\"Lindsay\",\"Tobias\",\"Byron\",\"George\",\"Rachel\"];",
+									"const exp_data_last_name=[\"Lawson\",\"Ferguson\",\"Funke\",\"Fields\",\"Edwards\",\"Howell\"];",
+									"const exp_data_avatar=[\"https://reqres.in/img/faces/7-image.jpg\", ",
+									"\"https://reqres.in/img/faces/8-image.jpg\",",
+									" \"https://reqres.in/img/faces/9-image.jpg\",",
+									" \"https://reqres.in/img/faces/10-image.jpg\",",
+									"  \"https://reqres.in/img/faces/11-image.jpg\",",
+									"  \"https://reqres.in/img/faces/12-image.jpg\"",
+									"];",
+									"const exp_data_email = [ \"michael.lawson@reqres.in\" , \"lindsay.ferguson@reqres.in\",   \"tobias.funke@reqres.in\",   \"byron.fields@reqres.in\",  \"george.edwards@reqres.in\",  \"rachel.howell@reqres.in\" ]",
+									"",
+									"",
+									"pm.test(\"Validate response body param page\", function(){",
+									"    pm.expect(res_page).to.eql(exp_page);",
+									"})",
+									"",
+									"pm.test(\"Validate response body param per page\", function(){",
+									"    pm.expect(res_per_page).to.eql(exp_per_page);",
+									"})",
+									"",
+									"pm.test(\"Validate response body param per total\", function(){",
+									"    pm.expect(res_total).to.eql(exp_total);",
+									"})",
+									"",
+									"pm.test(\"Validate response body param per total pages\", function(){",
+									"    pm.expect(res_total_pages).to.eql(exp_total_pages);",
+									"})",
+									"",
+									"pm.test(\"Validate response body param per support url\", function(){",
+									"    pm.expect(res_support_url).to.eql(exp_support_url);",
+									"})",
+									"",
+									"pm.test(\"Validate response body param per support text\", function(){",
+									"    pm.expect(res_support_text).to.eql(exp_support_text);",
+									"})",
+									"",
+									"for (i=0;i<count;i++)",
+									"{",
+									"   var res_id = dataArray[i].id;",
+									"   var exp_id = exp_data_id_array[i];",
+									"   var res_first_name = dataArray[i].first_name;",
+									"   var exp_first_name = exp_data_first_name[i];",
+									"   var res_last_name = dataArray[i].last_name;",
+									"   var exp_last_name = exp_data_last_name[i];",
+									"   var res_avatar = dataArray[i].avatar;",
+									"   var exp_avatar = exp_data_avatar[i];",
+									"   var res_email = dataArray[i].email;",
+									"   var exp_email = exp_data_email[i];",
+									"",
+									"",
+									"   pm.test(\"Validate response body param data array id at index \" + i,function(){",
+									"    pm.expect(res_id).to.eql(exp_id);",
+									"   })",
+									"",
+									"    pm.test(\"Validate response body param data array first_name at index \" + i,function(){",
+									"    pm.expect(res_first_name).to.eql(exp_first_name);",
+									"   })",
+									"",
+									"pm.test(\"Validate response body param data array last_name at index \" + i,function(){",
+									"    pm.expect(res_last_name).to.eql(exp_last_name);",
+									"   })",
+									"pm.test(\"Validate response body param data array avatar at index \" + i,function(){",
+									"    pm.expect(res_avatar).to.eql(exp_avatar);",
+									"   })",
+									"pm.test(\"Validate response body param data array email at index \" + i,function(){",
+									"    pm.expect(res_email).to.eql(exp_email);",
+									"   })",
+									"",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{GET_URL}}",
+							"host": [
+								"{{GET_URL}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete_Api",
+			"item": [
+				{
+					"name": "Delete_Api_Tc1",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{DELET_URL}}",
+							"host": [
+								"{{DELET_URL}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "name",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "job",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
